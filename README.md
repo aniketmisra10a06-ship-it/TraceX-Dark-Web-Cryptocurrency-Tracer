@@ -1,6 +1,6 @@
 <img width="1067" height="768" alt="Gemini_Generated_Image_853pnc853pnc853p" src="https://github.com/user-attachments/assets/a1e37e7f-5d86-4530-8909-bced7c9f8ac2" />
 
-### ⛓ Follow the money. Map the chain. Prove the path. ⛓
+                           ### ⛓ Follow the money. Map the chain. Prove the path. ⛓
 
 **Blockchain forensics & AML tracing for Bitcoin and Ethereum — with interactive graphs, flow diagrams and court-ready exports.**
 
