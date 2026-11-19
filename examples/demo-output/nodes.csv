@@ -1,0 +1,36 @@
+address,name,category,received_BTC,sent_BTC,tx_count,first_seen,last_seen,depth,cluster,taint,is_seed,tags
+bc1q_demo_ransom_1,DemoLocker ransom wallet #1,ransomware,2.5,2.5,4,2026-01-01 00:00:00 UTC,2026-01-02 06:00:00 UTC,0,1,1.0,True,bwd;fwd
+bc1q_demo_collect,,unlabeled,2.999,2.999,2,2026-01-02 06:00:00 UTC,2026-01-02 16:00:00 UTC,1,,1.0,False,fwd
+bc1q_demo_ransom_2,DemoLocker ransom wallet #2,ransomware,0.0,0.5,1,2026-01-02 06:00:00 UTC,2026-01-02 06:00:00 UTC,0,1,1.0,False,
+bc1q_demo_victim_1c,,unlabeled,0.4995,0.0,1,2026-01-01 00:00:00 UTC,2026-01-01 00:00:00 UTC,-1,,0.0,False,
+bc1q_demo_victim_1,Victim A,victim,0.0,1.0,1,2026-01-01 00:00:00 UTC,2026-01-01 00:00:00 UTC,-1,,0.0,False,bwd
+bc1q_demo_victim_2c,,unlabeled,0.6995,0.0,1,2026-01-01 05:00:00 UTC,2026-01-01 05:00:00 UTC,-1,,0.0,False,
+bc1q_demo_victim_2,Victim B,victim,0.0,1.5,1,2026-01-01 05:00:00 UTC,2026-01-01 05:00:00 UTC,-1,,0.0,False,bwd
+bc1q_demo_victim_3c,,unlabeled,0.7995,0.0,1,2026-01-01 09:00:00 UTC,2026-01-01 09:00:00 UTC,-1,,0.0,False,
+bc1q_demo_victim_3,Victim C,victim,0.0,2.0,1,2026-01-01 09:00:00 UTC,2026-01-01 09:00:00 UTC,-1,,0.0,False,bwd
+bc1q_demo_chg_1,,unlabeled,2.7985,2.7985,2,2026-01-02 16:00:00 UTC,2026-01-03 04:00:00 UTC,2,,1.0,False,fwd;peel-change
+bc1q_demo_peel_1,,unlabeled,0.2,0.2,2,2026-01-02 16:00:00 UTC,2026-01-02 17:00:00 UTC,2,,1.0,False,fwd;pass-through;peel-payment
+bc1q_demo_exch_kyc,DemoExchange deposit,exchange_kyc,0.409,0.0,2,2026-01-02 17:00:00 UTC,2026-01-04 19:00:00 UTC,3,,1.0,False,endpoint;fwd
+bc1q_demo_peel_2,,unlabeled,0.25,0.25,2,2026-01-03 04:00:00 UTC,2026-01-03 06:00:00 UTC,3,,1.0,False,fwd;peel-payment
+bc1q_demo_chg_2,,unlabeled,2.548,2.548,2,2026-01-03 04:00:00 UTC,2026-01-03 22:00:00 UTC,3,,1.0,False,fwd;peel-change
+bc1q_demo_market_1,DemoMarket escrow,darknet_market,0.2495,0.548,2,2026-01-03 06:00:00 UTC,2026-01-05 04:00:00 UTC,4,,1.0,False,fwd
+bc1q_demo_chg_3,,unlabeled,2.2475,2.2475,2,2026-01-03 22:00:00 UTC,2026-01-04 18:00:00 UTC,4,,1.0,False,fwd;peel-change
+bc1q_demo_peel_3,,unlabeled,0.3,0.3,2,2026-01-03 22:00:00 UTC,2026-01-04 00:00:00 UTC,4,,1.0,False,fwd;peel-payment
+bc1q_demo_market_hot,DemoMarket hot wallet,darknet_market,0.5475,0.5475,2,2026-01-05 04:00:00 UTC,2026-01-05 14:00:00 UTC,5,,1.0,False,fwd
+bc1q_demo_casino,DemoCasino,gambling,0.2995,0.0,1,2026-01-04 00:00:00 UTC,2026-01-04 00:00:00 UTC,5,,1.0,False,fwd
+bc1q_demo_peel_4,,unlabeled,0.21,0.21,2,2026-01-04 18:00:00 UTC,2026-01-04 19:00:00 UTC,5,,1.0,False,fwd;pass-through;peel-payment
+bc1q_demo_chg_4,,unlabeled,2.037,2.037,2,2026-01-04 18:00:00 UTC,2026-01-06 00:00:00 UTC,5,,1.0,False,fwd;peel-change
+bc1q_demo_sanctioned,Synthetic sanctioned entity,sanctioned,0.3,0.0,1,2026-01-05 14:00:00 UTC,2026-01-05 14:00:00 UTC,6,,1.0,False,fwd
+bc1q_demo_market_hot_c,,unlabeled,0.2465,0.0,1,2026-01-05 14:00:00 UTC,2026-01-05 14:00:00 UTC,6,,1.0,False,fwd
+bc1q_demo_cj_chg,,unlabeled,0.0365,0.0,1,2026-01-06 00:00:00 UTC,2026-01-06 00:00:00 UTC,6,,0.202949,False,coinjoin-output;fwd
+bc1q_demo_user_1,,unlabeled,0.0,2.0,1,2026-01-06 00:00:00 UTC,2026-01-06 00:00:00 UTC,5,,0.0,False,
+bc1q_demo_cj_out_4,,unlabeled,2.0,0.0,1,2026-01-06 00:00:00 UTC,2026-01-06 00:00:00 UTC,6,,0.202949,False,coinjoin-output;fwd
+bc1q_demo_user_2,,unlabeled,0.0,2.0,1,2026-01-06 00:00:00 UTC,2026-01-06 00:00:00 UTC,5,,0.0,False,
+bc1q_demo_cj_out_3,,unlabeled,2.0,0.0,1,2026-01-06 00:00:00 UTC,2026-01-06 00:00:00 UTC,6,,0.202949,False,coinjoin-output;fwd
+bc1q_demo_user_3,,unlabeled,0.0,2.0,1,2026-01-06 00:00:00 UTC,2026-01-06 00:00:00 UTC,5,,0.0,False,
+bc1q_demo_cj_out_2,,unlabeled,2.0,0.0,1,2026-01-06 00:00:00 UTC,2026-01-06 00:00:00 UTC,6,,0.202949,False,coinjoin-output;fwd
+bc1q_demo_cj_out_1,,unlabeled,2.0,2.0,2,2026-01-06 00:00:00 UTC,2026-01-06 10:00:00 UTC,6,,0.202949,False,coinjoin-output;fwd
+bc1q_demo_user_4,,unlabeled,0.0,2.0,1,2026-01-06 00:00:00 UTC,2026-01-06 00:00:00 UTC,5,,0.0,False,
+bc1q_demo_cj_out_5,,unlabeled,2.0,0.0,1,2026-01-06 00:00:00 UTC,2026-01-06 00:00:00 UTC,6,,0.202949,False,coinjoin-output;fwd
+bc1q_demo_hop_1,,unlabeled,1.9995,1.9995,2,2026-01-06 10:00:00 UTC,2026-01-06 10:11:59 UTC,7,,0.202949,False,fwd;pass-through
+bc1q_demo_exch_nokyc,ShadyEx (no-KYC),exchange_nokyc,1.999,0.0,1,2026-01-06 10:11:59 UTC,2026-01-06 10:11:59 UTC,8,,0.202949,False,

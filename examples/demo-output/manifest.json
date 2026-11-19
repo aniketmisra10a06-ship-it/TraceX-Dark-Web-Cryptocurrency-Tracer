@@ -1,0 +1,70 @@
+{
+  "tool": "TraceX",
+  "version": "1.0.0",
+  "generated": "2026-11-19T03:46:58Z",
+  "parameters": {
+    "chain": "btc",
+    "taint_mode": "haircut",
+    "provider": "demo",
+    "seeds_input": [
+      "bc1q_demo_ransom_1"
+    ],
+    "config": {
+      "chain": "btc",
+      "depth": 8,
+      "direction": "both",
+      "max_txs_per_address": 200,
+      "max_nodes": 1500,
+      "min_value": 0,
+      "hub_threshold": 1000,
+      "stop_categories": [
+        "exchange_kyc",
+        "exchange_nokyc",
+        "defi",
+        "service"
+      ],
+      "since": null,
+      "until": null
+    },
+    "label_sources": [
+      "builtin:demo"
+    ]
+  },
+  "seeds": [
+    "bc1q_demo_ransom_1"
+  ],
+  "stats": {
+    "addresses": 35,
+    "edges": 55,
+    "transactions": 17,
+    "labeled_addresses": 11,
+    "clusters": 1,
+    "coinjoins": 1,
+    "peel_chains": 1,
+    "findings": 9,
+    "total_volume": 34.1755,
+    "total_fees": 0.0095,
+    "first_tx": "2026-01-01 00:00:00 UTC",
+    "last_tx": "2026-01-06 10:11:59 UTC",
+    "tainted_addresses": 25,
+    "max_depth": 8
+  },
+  "files": {
+    "report.html": "4609cdf3b7f7836ab3f988f194b3b77fa310a9712a72c1269959359464a8b142",
+    "report.md": "54cd77a38321beb013601cd3321a7e20256bcd0f1f82f5ce55ecbbe7e6a462bd",
+    "graph.json": "9285faeea1174f1127ed08efbc86a781809438b0e607e68b5b4d0d65498253d0",
+    "nodes.csv": "d05f2f50a3bef85815a5e9317ecf6983daf4371137c0f52841a71163e57df6c9",
+    "edges.csv": "fcbc310772e93a356959302d67d78c8204278bdb1c0d2ff618c41a492a11aed2",
+    "transactions.csv": "84956f95cb6b72a017888477b4630e5453d09367c0bdfcc3210e87b4e8551ae1",
+    "findings.csv": "40481dad05d1df19275e2096fc5d20f8e7a86a08f174fc8c4d3a7c12a0968447",
+    "graph.graphml": "1ba8efd2391a2652679086770ad65a7865806fcc7a1f67e2a3de288fa37a1b4a",
+    "graph.gexf": "ee91eb249e3b563a54c7af450e3c98b062602385684aa7302c8c3a4498050d7d",
+    "graph.dot": "cf0e498ab87662d45e395476395cf2960fd2b979ddd360e4aa12e998e505b257",
+    "neo4j.cypher": "b7bfe62aafec57b80e0e38d186f951dc72eeb831a88ebe2e4bf80926a0092621",
+    "flow.mmd": "3aa3ca2e4847490755e9184dae5bd6880f1cf271b2944f787dbd1b1ab6976277",
+    "sankey.mmd": "c9ce33010abc8dec4f1785ae0155b44f11c51fd373744bf80f973bc5cae8979b",
+    "sequence.mmd": "f8029e60fb43924cb7381718efba4bbff64ad4b659c93df5b7164c2f5d207f1d",
+    "peel_chain.mmd": "5973dcaf0d052ec511c8fe19287d8b2662a27dd8f6bb48ed0b41a94879ef8308",
+    "clusters.mmd": "bdc3f3f56f70513fb7a8d0d510fc19cad28e28703de45ab749497d00e04a7ff0"
+  }
+}

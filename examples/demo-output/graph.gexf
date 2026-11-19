@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gexf xmlns="http://gexf.net/1.3" version="1.3"><graph defaultedgetype="directed">
+<attributes class="node"><attribute id="0" title="category" type="string"/><attribute id="1" title="taint" type="double"/><attribute id="2" title="cluster" type="integer"/><attribute id="3" title="volume" type="double"/></attributes><nodes>
+<node id="bc1q_demo_ransom_1" label="DemoLocker ransom wallet #1"><attvalues><attvalue for="0" value="ransomware"/><attvalue for="1" value="1.0"/><attvalue for="2" value="1"/><attvalue for="3" value="5.0"/></attvalues></node>
+<node id="bc1q_demo_collect" label="bc1q_demo_collect"><attvalues><attvalue for="0" value="unlabeled"/><attvalue for="1" value="1.0"/><attvalue for="2" value="0"/><attvalue for="3" value="5.998"/></attvalues></node>
+<node id="bc1q_demo_ransom_2" label="DemoLocker ransom wallet #2"><attvalues><attvalue for="0" value="ransomware"/><attvalue for="1" value="1.0"/><attvalue for="2" value="1"/><attvalue for="3" value="0.5"/></attvalues></node>
+<node id="bc1q_demo_victim_1c" label="bc1q_demo_victim_1c"><attvalues><attvalue for="0" value="unlabeled"/><attvalue for="1" value="0.0"/><attvalue for="2" value="0"/><attvalue for="3" value="0.4995"/></attvalues></node>
+<node id="bc1q_demo_victim_1" label="Victim A"><attvalues><attvalue for="0" value="victim"/><attvalue for="1" value="0.0"/><attvalue for="2" value="0"/><attvalue for="3" value="1.0"/></attvalues></node>
+<node id="bc1q_demo_victim_2c" label="bc1q_demo_victim_2c"><attvalues><attvalue for="0" value="unlabeled"/><attvalue for="1" value="0.0"/><attvalue for="2" value="0"/><attvalue for="3" value="0.6995"/></attvalues></node>
+<node id="bc1q_demo_victim_2" label="Victim B"><attvalues><attvalue for="0" value="victim"/><attvalue for="1" value="0.0"/><attvalue for="2" value="0"/><attvalue for="3" value="1.5"/></attvalues></node>
+<node id="bc1q_demo_victim_3c" label="bc1q_demo_victim_3c"><attvalues><attvalue for="0" value="unlabeled"/><attvalue for="1" value="0.0"/><attvalue for="2" value="0"/><attvalue for="3" value="0.7995"/></attvalues></node>
+<node id="bc1q_demo_victim_3" label="Victim C"><attvalues><attvalue for="0" value="victim"/><attvalue for="1" value="0.0"/><attvalue for="2" value="0"/><attvalue for="3" value="2.0"/></attvalues></node>
+<node id="bc1q_demo_chg_1" label="bc1q_demo_chg_1"><attvalues><attvalue for="0" value="unlabeled"/><attvalue for="1" value="1.0"/><attvalue for="2" value="0"/><attvalue for="3" value="5.597"/></attvalues></node>
+<node id="bc1q_demo_peel_1" label="bc1q_demo_peel_1"><attvalues><attvalue for="0" value="unlabeled"/><attvalue for="1" value="1.0"/><attvalue for="2" value="0"/><attvalue for="3" value="0.4"/></attvalues></node>
+<node id="bc1q_demo_exch_kyc" label="DemoExchange deposit"><attvalues><attvalue for="0" value="exchange_kyc"/><attvalue for="1" value="1.0"/><attvalue for="2" value="0"/><attvalue for="3" value="0.409"/></attvalues></node>
+<node id="bc1q_demo_peel_2" label="bc1q_demo_peel_2"><attvalues><attvalue for="0" value="unlabeled"/><attvalue for="1" value="1.0"/><attvalue for="2" value="0"/><attvalue for="3" value="0.5"/></attvalues></node>
+<node id="bc1q_demo_chg_2" label="bc1q_demo_chg_2"><attvalues><attvalue for="0" value="unlabeled"/><attvalue for="1" value="1.0"/><attvalue for="2" value="0"/><attvalue for="3" value="5.096"/></attvalues></node>
+<node id="bc1q_demo_market_1" label="DemoMarket escrow"><attvalues><attvalue for="0" value="darknet_market"/><attvalue for="1" value="1.0"/><attvalue for="2" value="0"/><attvalue for="3" value="0.7975000000000001"/></attvalues></node>
+<node id="bc1q_demo_chg_3" label="bc1q_demo_chg_3"><attvalues><attvalue for="0" value="unlabeled"/><attvalue for="1" value="1.0"/><attvalue for="2" value="0"/><attvalue for="3" value="4.495"/></attvalues></node>
+<node id="bc1q_demo_peel_3" label="bc1q_demo_peel_3"><attvalues><attvalue for="0" value="unlabeled"/><attvalue for="1" value="1.0"/><attvalue for="2" value="0"/><attvalue for="3" value="0.6"/></attvalues></node>
+<node id="bc1q_demo_market_hot" label="DemoMarket hot wallet"><attvalues><attvalue for="0" value="darknet_market"/><attvalue for="1" value="1.0"/><attvalue for="2" value="0"/><attvalue for="3" value="1.095"/></attvalues></node>
+<node id="bc1q_demo_casino" label="DemoCasino"><attvalues><attvalue for="0" value="gambling"/><attvalue for="1" value="1.0"/><attvalue for="2" value="0"/><attvalue for="3" value="0.2995"/></attvalues></node>
+<node id="bc1q_demo_peel_4" label="bc1q_demo_peel_4"><attvalues><attvalue for="0" value="unlabeled"/><attvalue for="1" value="1.0"/><attvalue for="2" value="0"/><attvalue for="3" value="0.42"/></attvalues></node>
+<node id="bc1q_demo_chg_4" label="bc1q_demo_chg_4"><attvalues><attvalue for="0" value="unlabeled"/><attvalue for="1" value="1.0"/><attvalue for="2" value="0"/><attvalue for="3" value="4.074"/></attvalues></node>
+<node id="bc1q_demo_sanctioned" label="Synthetic sanctioned entity"><attvalues><attvalue for="0" value="sanctioned"/><attvalue for="1" value="1.0"/><attvalue for="2" value="0"/><attvalue for="3" value="0.3"/></attvalues></node>
+<node id="bc1q_demo_market_hot_c" label="bc1q_dem…_hot_c"><attvalues><attvalue for="0" value="unlabeled"/><attvalue for="1" value="1.0"/><attvalue for="2" value="0"/><attvalue for="3" value="0.2465"/></attvalues></node>
+<node id="bc1q_demo_cj_chg" label="bc1q_demo_cj_chg"><attvalues><attvalue for="0" value="unlabeled"/><attvalue for="1" value="0.202949"/><attvalue for="2" value="0"/><attvalue for="3" value="0.0365"/></attvalues></node>
+<node id="bc1q_demo_user_1" label="bc1q_demo_user_1"><attvalues><attvalue for="0" value="unlabeled"/><attvalue for="1" value="0.0"/><attvalue for="2" value="0"/><attvalue for="3" value="2.0"/></attvalues></node>
+<node id="bc1q_demo_cj_out_4" label="bc1q_demo_cj_out_4"><attvalues><attvalue for="0" value="unlabeled"/><attvalue for="1" value="0.202949"/><attvalue for="2" value="0"/><attvalue for="3" value="2.0"/></attvalues></node>
+<node id="bc1q_demo_user_2" label="bc1q_demo_user_2"><attvalues><attvalue for="0" value="unlabeled"/><attvalue for="1" value="0.0"/><attvalue for="2" value="0"/><attvalue for="3" value="2.0"/></attvalues></node>
+<node id="bc1q_demo_cj_out_3" label="bc1q_demo_cj_out_3"><attvalues><attvalue for="0" value="unlabeled"/><attvalue for="1" value="0.202949"/><attvalue for="2" value="0"/><attvalue for="3" value="2.0"/></attvalues></node>
+<node id="bc1q_demo_user_3" label="bc1q_demo_user_3"><attvalues><attvalue for="0" value="unlabeled"/><attvalue for="1" value="0.0"/><attvalue for="2" value="0"/><attvalue for="3" value="2.0"/></attvalues></node>
+<node id="bc1q_demo_cj_out_2" label="bc1q_demo_cj_out_2"><attvalues><attvalue for="0" value="unlabeled"/><attvalue for="1" value="0.202949"/><attvalue for="2" value="0"/><attvalue for="3" value="2.0"/></attvalues></node>
+<node id="bc1q_demo_cj_out_1" label="bc1q_demo_cj_out_1"><attvalues><attvalue for="0" value="unlabeled"/><attvalue for="1" value="0.202949"/><attvalue for="2" value="0"/><attvalue for="3" value="4.0"/></attvalues></node>
+<node id="bc1q_demo_user_4" label="bc1q_demo_user_4"><attvalues><attvalue for="0" value="unlabeled"/><attvalue for="1" value="0.0"/><attvalue for="2" value="0"/><attvalue for="3" value="2.0"/></attvalues></node>
+<node id="bc1q_demo_cj_out_5" label="bc1q_demo_cj_out_5"><attvalues><attvalue for="0" value="unlabeled"/><attvalue for="1" value="0.202949"/><attvalue for="2" value="0"/><attvalue for="3" value="2.0"/></attvalues></node>
+<node id="bc1q_demo_hop_1" label="bc1q_demo_hop_1"><attvalues><attvalue for="0" value="unlabeled"/><attvalue for="1" value="0.202949"/><attvalue for="2" value="0"/><attvalue for="3" value="3.999"/></attvalues></node>
+<node id="bc1q_demo_exch_nokyc" label="ShadyEx (no-KYC)"><attvalues><attvalue for="0" value="exchange_nokyc"/><attvalue for="1" value="0.202949"/><attvalue for="2" value="0"/><attvalue for="3" value="1.999"/></attvalues></node>
+</nodes><edges>
+<edge id="0" source="bc1q_demo_ransom_1" target="bc1q_demo_collect" weight="2.4991666666666665"/>
+<edge id="1" source="bc1q_demo_ransom_2" target="bc1q_demo_collect" weight="0.49983333333333335"/>
+<edge id="2" source="bc1q_demo_victim_1" target="bc1q_demo_ransom_1" weight="0.5"/>
+<edge id="3" source="bc1q_demo_victim_1" target="bc1q_demo_victim_1c" weight="0.4995"/>
+<edge id="4" source="bc1q_demo_victim_2" target="bc1q_demo_ransom_1" weight="0.8"/>
+<edge id="5" source="bc1q_demo_victim_2" target="bc1q_demo_victim_2c" weight="0.6995"/>
+<edge id="6" source="bc1q_demo_victim_3" target="bc1q_demo_ransom_1" weight="1.2"/>
+<edge id="7" source="bc1q_demo_victim_3" target="bc1q_demo_victim_3c" weight="0.7995"/>
+<edge id="8" source="bc1q_demo_collect" target="bc1q_demo_peel_1" weight="0.2"/>
+<edge id="9" source="bc1q_demo_collect" target="bc1q_demo_chg_1" weight="2.7985"/>
+<edge id="10" source="bc1q_demo_peel_1" target="bc1q_demo_exch_kyc" weight="0.1995"/>
+<edge id="11" source="bc1q_demo_chg_1" target="bc1q_demo_peel_2" weight="0.25"/>
+<edge id="12" source="bc1q_demo_chg_1" target="bc1q_demo_chg_2" weight="2.548"/>
+<edge id="13" source="bc1q_demo_peel_2" target="bc1q_demo_market_1" weight="0.2495"/>
+<edge id="14" source="bc1q_demo_chg_2" target="bc1q_demo_peel_3" weight="0.3"/>
+<edge id="15" source="bc1q_demo_chg_2" target="bc1q_demo_chg_3" weight="2.2475"/>
+<edge id="16" source="bc1q_demo_market_1" target="bc1q_demo_market_hot" weight="0.5475"/>
+<edge id="17" source="bc1q_demo_peel_3" target="bc1q_demo_casino" weight="0.2995"/>
+<edge id="18" source="bc1q_demo_chg_3" target="bc1q_demo_peel_4" weight="0.21"/>
+<edge id="19" source="bc1q_demo_chg_3" target="bc1q_demo_chg_4" weight="2.037"/>
+<edge id="20" source="bc1q_demo_market_hot" target="bc1q_demo_sanctioned" weight="0.3"/>
+<edge id="21" source="bc1q_demo_market_hot" target="bc1q_demo_market_hot_c" weight="0.2465"/>
+<edge id="22" source="bc1q_demo_peel_4" target="bc1q_demo_exch_kyc" weight="0.2095"/>
+<edge id="23" source="bc1q_demo_chg_4" target="bc1q_demo_cj_out_1" weight="0.4058981767460397"/>
+<edge id="24" source="bc1q_demo_chg_4" target="bc1q_demo_cj_out_2" weight="0.4058981767460397"/>
+<edge id="25" source="bc1q_demo_chg_4" target="bc1q_demo_cj_out_3" weight="0.4058981767460397"/>
+<edge id="26" source="bc1q_demo_chg_4" target="bc1q_demo_cj_out_4" weight="0.4058981767460397"/>
+<edge id="27" source="bc1q_demo_chg_4" target="bc1q_demo_cj_out_5" weight="0.4058981767460397"/>
+<edge id="28" source="bc1q_demo_chg_4" target="bc1q_demo_cj_chg" weight="0.007407641725615224"/>
+<edge id="29" source="bc1q_demo_user_1" target="bc1q_demo_cj_out_1" weight="0.3985254558134901"/>
+<edge id="30" source="bc1q_demo_user_1" target="bc1q_demo_cj_out_2" weight="0.3985254558134901"/>
+<edge id="31" source="bc1q_demo_user_1" target="bc1q_demo_cj_out_3" weight="0.3985254558134901"/>
+<edge id="32" source="bc1q_demo_user_1" target="bc1q_demo_cj_out_4" weight="0.3985254558134901"/>
+<edge id="33" source="bc1q_demo_user_1" target="bc1q_demo_cj_out_5" weight="0.3985254558134901"/>
+<edge id="34" source="bc1q_demo_user_1" target="bc1q_demo_cj_chg" weight="0.0072730895685961935"/>
+<edge id="35" source="bc1q_demo_user_2" target="bc1q_demo_cj_out_1" weight="0.3985254558134901"/>
+<edge id="36" source="bc1q_demo_user_2" target="bc1q_demo_cj_out_2" weight="0.3985254558134901"/>
+<edge id="37" source="bc1q_demo_user_2" target="bc1q_demo_cj_out_3" weight="0.3985254558134901"/>
+<edge id="38" source="bc1q_demo_user_2" target="bc1q_demo_cj_out_4" weight="0.3985254558134901"/>
+<edge id="39" source="bc1q_demo_user_2" target="bc1q_demo_cj_out_5" weight="0.3985254558134901"/>
+<edge id="40" source="bc1q_demo_user_2" target="bc1q_demo_cj_chg" weight="0.0072730895685961935"/>
+<edge id="41" source="bc1q_demo_user_3" target="bc1q_demo_cj_out_1" weight="0.3985254558134901"/>
+<edge id="42" source="bc1q_demo_user_3" target="bc1q_demo_cj_out_2" weight="0.3985254558134901"/>
+<edge id="43" source="bc1q_demo_user_3" target="bc1q_demo_cj_out_3" weight="0.3985254558134901"/>
+<edge id="44" source="bc1q_demo_user_3" target="bc1q_demo_cj_out_4" weight="0.3985254558134901"/>
+<edge id="45" source="bc1q_demo_user_3" target="bc1q_demo_cj_out_5" weight="0.3985254558134901"/>
+<edge id="46" source="bc1q_demo_user_3" target="bc1q_demo_cj_chg" weight="0.0072730895685961935"/>
+<edge id="47" source="bc1q_demo_user_4" target="bc1q_demo_cj_out_1" weight="0.3985254558134901"/>
+<edge id="48" source="bc1q_demo_user_4" target="bc1q_demo_cj_out_2" weight="0.3985254558134901"/>
+<edge id="49" source="bc1q_demo_user_4" target="bc1q_demo_cj_out_3" weight="0.3985254558134901"/>
+<edge id="50" source="bc1q_demo_user_4" target="bc1q_demo_cj_out_4" weight="0.3985254558134901"/>
+<edge id="51" source="bc1q_demo_user_4" target="bc1q_demo_cj_out_5" weight="0.3985254558134901"/>
+<edge id="52" source="bc1q_demo_user_4" target="bc1q_demo_cj_chg" weight="0.0072730895685961935"/>
+<edge id="53" source="bc1q_demo_cj_out_1" target="bc1q_demo_hop_1" weight="1.9995"/>
+<edge id="54" source="bc1q_demo_hop_1" target="bc1q_demo_exch_nokyc" weight="1.999"/>
+</edges></graph></gexf>

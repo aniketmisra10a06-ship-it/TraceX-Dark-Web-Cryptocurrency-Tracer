@@ -1,0 +1,4 @@
+address,name,category,source,confidence,notes
+bc1q_example_invalid_address_1,Example Exchange hot wallet,exchange_kyc,my-case-notes,0.9,Replace with your own data
+bc1q_example_invalid_address_2,Example Mixer,mixer,vendor-export-2026-01,0.8,
+0xexample000000000000000000000000000000000001,Example Sanctioned Address,sanctioned,OFAC SDN list,1.0,Import from the official list

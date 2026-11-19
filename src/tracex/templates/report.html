@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data: blob:;">
+<title>TraceX Investigation Report</title>
+<style>
+:root{--bg:#0b1020;--panel:#121a30;--panel2:#18223f;--line:#243055;--text:#e6ebff;--mute:#93a0c8;--accent:#4cc9f0;--accent2:#b388ff;--good:#34d399;--warn:#fbbf24;--bad:#f87171}
+:root[data-theme=light]{--bg:#f5f7fc;--panel:#ffffff;--panel2:#eef2fb;--line:#d5dcef;--text:#10172e;--mute:#58627f;--accent:#0b7fb5;--accent2:#6d3fd6}
+@media (prefers-color-scheme: light){:root:not([data-theme=dark]){--bg:#f5f7fc;--panel:#ffffff;--panel2:#eef2fb;--line:#d5dcef;--text:#10172e;--mute:#58627f;--accent:#0b7fb5;--accent2:#6d3fd6}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--line);background:var(--panel)}
+.brand{display:flex;align-items:baseline;gap:10px}
+.logo{font:800 26px/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:-1px;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--mute);font-size:12px}
+nav{display:flex;flex-wrap:wrap;gap:4px;padding:8px 20px;border-bottom:1px solid var(--line);background:var(--panel)}
+nav button,.btn{background:transparent;border:1px solid transparent;color:var(--mute);padding:7px 12px;border-radius:8px;cursor:pointer;font:inherit}
+nav button:hover,.btn:hover{color:var(--text);background:var(--panel2)}
+nav button.on{color:var(--text);background:var(--panel2);border-color:var(--line)}
+.btn{border-color:var(--line);color:var(--text)}
+main{padding:18px 20px 40px;max-width:1500px;margin:auto}
+section{display:none}section.on{display:block}
+.grid{display:grid;gap:12px}
+.cards{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.card .k{color:var(--mute);font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.card .v{font-size:22px;font-weight:700;margin-top:2px}
+h2{margin:22px 0 10px;font-size:16px}
+h3{margin:0 0 8px;font-size:14px}
+.two{grid-template-columns:repeat(auto-fit,minmax(380px,1fr))}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:7px 9px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{color:var(--mute);font-weight:600;cursor:pointer;user-select:none;position:sticky;top:0;background:var(--panel)}
+tr.click:hover{background:var(--panel2);cursor:pointer}
+.tw{max-height:560px;overflow:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+code,.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px}
+.pill{display:inline-block;padding:1px 8px;border-radius:99px;font-size:11px;font-weight:600;border:1px solid}
+.sev-critical{color:#fff;background:#b91c1c;border-color:#b91c1c}.sev-high{color:#fb923c;border-color:#fb923c}
+.sev-medium{color:var(--warn);border-color:var(--warn)}.sev-low{color:var(--good);border-color:var(--good)}.sev-info{color:var(--mute);border-color:var(--line)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+#gwrap{position:relative;height:72vh;min-height:480px;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+canvas{width:100%;height:100%;display:block;cursor:grab}
+#tip{position:absolute;pointer-events:none;background:var(--panel2);border:1px solid var(--line);padding:6px 9px;border-radius:8px;font-size:12px;display:none;max-width:320px;z-index:5}
+#side{position:absolute;right:10px;top:10px;bottom:10px;width:330px;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;display:none;z-index:6}
+#side .x{float:right;cursor:pointer;color:var(--mute)}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:10px}
+.tools label{color:var(--mute);font-size:12px;display:flex;gap:6px;align-items:center}
+input[type=text],select{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:6px 9px;font:inherit}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:flex;align-items:center;gap:5px;padding:3px 9px;border:1px solid var(--line);border-radius:99px;background:var(--panel);font-size:12px;cursor:pointer}
+.chip.off{opacity:.35}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;color:var(--mute);font-size:12px}
+.bar{height:10px;border-radius:5px;background:var(--panel2);overflow:hidden}.bar>i{display:block;height:100%}
+.find{border-left:4px solid var(--line);padding:10px 12px;margin-bottom:10px;background:var(--panel);border-radius:0 10px 10px 0}
+.find.critical{border-color:#b91c1c}.find.high{border-color:#fb923c}.find.medium{border-color:var(--warn)}.find.low{border-color:var(--good)}
+a.addr{color:var(--accent);cursor:pointer;text-decoration:underline dotted}
+svg text{fill:var(--text);font-size:11px}
+.axis line,.axis path{stroke:var(--line)}.muted{color:var(--mute)}
+.disc{margin-top:26px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;color:var(--mute);font-size:12px;background:var(--panel)}
+@media(max-width:700px){#side{width:auto;left:10px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><span class="logo">TraceX</span><span class="sub">Blockchain forensics report · by Aniket Misra</span></div>
+  <div style="display:flex;gap:8px;align-items:center"><span class="sub" id="gen"></span>
+    <button class="btn" id="theme">Theme</button><button class="btn" id="dljson">Download JSON</button></div>
+</header>
+<nav id="nav"></nav>
+<main>
+<section id="overview"></section>
+<section id="graph">
+  <div class="tools">
+    <input type="text" id="search" placeholder="Search address / label…" size="26">
+    <label>Layout <select id="layout"><option value="force">Force</option><option value="layered">Layered by hop</option></select></label>
+    <label>Color <select id="colorby"><option value="category">Category</option><option value="cluster">Cluster</option><option value="taint">Taint</option><option value="depth">Hop depth</option></select></label>
+    <label>Min edge <input type="range" id="minv" min="0" max="100" value="0"><span id="minvl" class="mono">0</span></label>
+    <label>Max hop <select id="maxhop"></select></label>
+    <label><input type="checkbox" id="hideun"> hide unlabeled</label>
+    <label><input type="checkbox" id="lbls" checked> labels</label>
+    <button class="btn" id="relayout">Re-layout</button><button class="btn" id="fit">Fit</button><button class="btn" id="png">PNG</button>
+  </div>
+  <div class="chips" id="chips"></div>
+  <div id="gwrap" style="margin-top:10px"><canvas id="cv"></canvas><div id="tip"></div><div id="side"></div></div>
+  <div class="legend"><span>● size = volume</span><span>— width = value</span><span>red ring = taint</span><span>double ring = seed</span><span id="bignote"></span><span>drag nodes · wheel to zoom · drag background to pan · click for details</span></div>
+</section>
+<section id="flow"><h2>Layered fund flow</h2><p class="muted">Columns are hop distance from the seed(s) (negative = upstream sources, positive = downstream destinations). Ribbon width = value moved. Top nodes per column shown.</p><div class="tw" style="padding:8px;max-height:none;overflow:auto" id="flowsvg"></div></section>
+<section id="timeline"><h2>Transaction timeline</h2><p class="muted">Each dot is a transaction (y = value, log scale).</p><div class="tw" style="max-height:none;padding:8px" id="tlsvg"></div></section>
+<section id="findings"></section>
+<section id="clusters"></section>
+<section id="txs"></section>
+<section id="addrs"></section>
+<div class="disc" id="disc"></div>
+</main>
+<script>
+"use strict";
+const D = __DATA__;
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const sym = D.symbol, CAT = D.categories;
+const fmt = v => { if (v === 0) return "0"; const a = Math.abs(v); return a >= 1000 ? v.toLocaleString(undefined,{maximumFractionDigits:2}) : a >= 1 ? v.toFixed(4) : v.toFixed(6); };
+const iso = ts => ts ? new Date(ts * 1000).toISOString().replace("T"," ").slice(0,19) + " UTC" : "";
+const short = a => a.length <= 20 ? a : a.slice(0,8) + "…" + a.slice(-6);
+const N = new Map(D.nodes.map(n => [n.id, n]));
+const nm = a => { const n = N.get(a); return n && n.name ? n.name : short(a); };
+const col = c => (CAT[c] || CAT.unlabeled).color;
+const addrLink = a => `<a class="addr" data-a="${esc(a)}" title="${esc(a)}">${esc(nm(a))}</a>`;
+document.body.addEventListener("click", e => { const t = e.target.closest("a.addr"); if (t) { go("graph"); selectNode(t.dataset.a, true); } });
+
+$("#gen").textContent = `${D.meta.generated} · ${D.meta.chain.toUpperCase()} · v${D.meta.version}`;
+$("#disc").textContent = "Heuristic analysis of public blockchain data. Attribution comes solely from user-supplied labels. Results are investigative leads, not proof of identity or wrongdoing; corroborate independently before acting.";
+$("#theme").onclick = () => { const r = document.documentElement; const cur = r.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"); r.dataset.theme = cur === "dark" ? "light" : "dark"; draw(); renderFlow(); renderTimeline(); };
+$("#dljson").onclick = () => { const b = new Blob([JSON.stringify(D, null, 2)], {type:"application/json"}); const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "tracex-data.json"; a.click(); };
+
+// ---------------------------------------------------------------- tabs
+const TABS = [["overview","Overview"],["graph","Interactive graph"],["flow","Flow diagram"],["timeline","Timeline"],["findings","Findings (" + D.findings.length + ")"],["clusters","Clusters (" + D.clusters.length + ")"],["txs","Transactions (" + D.transactions.length + ")"],["addrs","Addresses (" + D.nodes.length + ")"]];
+$("#nav").innerHTML = TABS.map(t => `<button data-t="${t[0]}">${t[1]}</button>`).join("");
+function go(id) { document.querySelectorAll("section").forEach(s => s.classList.toggle("on", s.id === id)); document.querySelectorAll("nav button").forEach(b => b.classList.toggle("on", b.dataset.t === id)); if (id === "graph") { resize(); if (!laidOut) { laidOut = true; fitted = false; layoutInit(); } else draw(); } location.hash = id; }
+$("#nav").onclick = e => { const b = e.target.closest("button"); if (b) go(b.dataset.t); };
+
+// ---------------------------------------------------------------- overview
+function gauge(score, level) {
+  const c = score < 20 ? "#34d399" : score < 50 ? "#fbbf24" : score < 75 ? "#fb923c" : "#ef4444";
+  const a = Math.PI * (score / 100), r = 52, x = 64 - r * Math.cos(a), y = 64 - r * Math.sin(a);
+  return `<svg width="130" height="84" viewBox="0 0 128 84"><path d="M12 64 A52 52 0 0 1 116 64" fill="none" stroke="var(--line)" stroke-width="12" stroke-linecap="round"/><path d="M12 64 A52 52 0 0 1 ${x.toFixed(1)} ${y.toFixed(1)}" fill="none" stroke="${c}" stroke-width="12" stroke-linecap="round"/><text x="64" y="62" text-anchor="middle" style="font-size:26px;font-weight:800">${score}</text><text x="64" y="80" text-anchor="middle" style="font-size:11px;fill:${c}">${level.toUpperCase()}</text></svg>`;
+}
+function overview() {
+  const s = D.stats;
+  const cards = [["Addresses", s.addresses],["Transactions", s.transactions],["Edges", s.edges],["Labeled", s.labeled_addresses],["Clusters", s.clusters],["CoinJoins", s.coinjoins],["Peel chains", s.peel_chains],["Tainted", s.tainted_addresses],["Volume " + sym, fmt(s.total_volume)],["Fees " + sym, fmt(s.total_fees)],["Max hop", s.max_depth],["Findings", s.findings]];
+  let h = `<div class="grid cards">${cards.map(c => `<div class="card"><div class="k">${c[0]}</div><div class="v">${esc(c[1])}</div></div>`).join("")}</div>`;
+  h += `<p class="muted">Period: ${esc(s.first_tx)} → ${esc(s.last_tx)}</p><h2>Risk assessment</h2><div class="grid two">`;
+  for (const [a, r] of Object.entries(D.risk)) {
+    h += `<div class="card" style="display:flex;gap:14px"><div>${gauge(r.score, r.level)}</div><div style="flex:1"><h3>${addrLink(a)}</h3><div class="mono muted" style="word-break:break-all">${esc(a)}</div>${r.factors.slice(0,6).map(f => `<div style="margin-top:6px"><div style="display:flex;justify-content:space-between"><span>${esc(f.factor)} <span class="muted">· ${esc(f.detail)}</span></span><b>${(f.contribution * 100).toFixed(0)}</b></div><div class="bar"><i style="width:${Math.min(100, f.contribution * 100)}%;background:var(--accent)"></i></div></div>`).join("") || "<div class=muted>No risk factors found.</div>"}</div></div>`;
+  }
+  h += `</div><h2>Value by entity category</h2><div class="grid two"><div class="card">`;
+  const byCat = {}; D.nodes.forEach(n => byCat[n.category] = (byCat[n.category] || 0) + n.received);
+  const mx = Math.max(...Object.values(byCat), 1e-12);
+  h += Object.entries(byCat).sort((a, b) => b[1] - a[1]).map(([c, v]) => `<div style="margin:6px 0"><div style="display:flex;justify-content:space-between"><span><span class="dot" style="background:${col(c)}"></span>${esc(CAT[c].title)}</span><b>${fmt(v)} ${sym}</b></div><div class="bar"><i style="width:${100 * v / mx}%;background:${col(c)}"></i></div></div>`).join("");
+  h += `</div><div class="card"><h3>Category → category flow matrix (${sym})</h3>${matrix()}</div></div>`;
+  $("#overview").innerHTML = h;
+}
+function matrix() {
+  const F = D.category_flows, cats = [...new Set([...Object.keys(F), ...Object.values(F).flatMap(o => Object.keys(o))])];
+  const all = Object.values(F).flatMap(o => Object.values(o)), mx = Math.max(...all, 1e-12);
+  let h = `<div style="overflow:auto"><table><tr><th>from \\ to</th>${cats.map(c => `<th>${esc(CAT[c].title)}</th>`).join("")}</tr>`;
+  for (const a of cats) h += `<tr><td><span class="dot" style="background:${col(a)}"></span>${esc(CAT[a].title)}</td>${cats.map(b => { const v = (F[a] || {})[b] || 0; return `<td style="background:rgba(76,201,240,${v ? 0.12 + 0.6 * Math.sqrt(v / mx) : 0})">${v ? fmt(v) : ""}</td>`; }).join("")}</tr>`;
+  return h + "</table></div>";
+}
+
+// ---------------------------------------------------------------- graph
+const cv = $("#cv"), ctx = cv.getContext("2d");
+const nodes = D.nodes.map(n => ({...n, x: 0, y: 0, vx: 0, vy: 0, r: 5, vis: true}));
+const NI = new Map(nodes.map(n => [n.id, n]));
+const edges = D.edges.filter(e => NI.has(e.s) && NI.has(e.t)).map(e => ({...e, a: NI.get(e.s), b: NI.get(e.t), vis: true}));
+const maxVol = Math.max(...nodes.map(n => n.received + n.sent), 1e-12), maxVal = Math.max(...edges.map(e => e.value), 1e-12);
+const SZ = nodes.length > 1500 ? 0.4 : nodes.length > 600 ? 0.55 : nodes.length > 250 ? 0.8 : 1, BIG = nodes.length > 800;
+nodes.forEach(n => n.r = (4 + 13 * Math.sqrt((n.received + n.sent) / maxVol)) * SZ);
+let view = {k: 1, x: 0, y: 0}, alpha = 0, sel = null, hover = null, drag = null, W = 0, H = 0, dpr = 1;
+const catOff = new Set();
+const adj = new Map(nodes.map(n => [n.id, new Set()])); edges.forEach(e => { adj.get(e.s).add(e.t); adj.get(e.t).add(e.s); });
+function resize() { const r = cv.getBoundingClientRect(); dpr = window.devicePixelRatio || 1; W = r.width; H = r.height; cv.width = W * dpr; cv.height = H * dpr; }
+window.addEventListener("resize", () => { resize(); draw(); });
+function layoutInit() {
+  const layered = $("#layout").value === "layered", byDepth = {};
+  nodes.forEach(n => (byDepth[n.depth] = byDepth[n.depth] || []).push(n));
+  if (layered) {
+    // each hop is a compact grid inside its own column (never one giant vertical strip)
+    for (const [d, arr] of Object.entries(byDepth)) {
+      const cols = Math.max(1, Math.ceil(Math.sqrt(arr.length / 3))), sp = 26;
+      arr.forEach((n, i) => { n.x = d * 260 + ((i % cols) - cols / 2) * sp; n.y = (Math.floor(i / cols) - arr.length / cols / 2) * sp; n.vx = n.vy = 0; n.jx = (Math.random() - .5) * Math.min(220, 40 + Math.sqrt(arr.length) * 8); });
+    }
+  } else {
+    // sunflower spiral: compact, evenly spread start; seeds/low hops land in the middle
+    nodes.slice().sort((p, q) => Math.abs(p.depth) - Math.abs(q.depth)).forEach((n, i) => { const r = 16 * Math.sqrt(i + 1), t = i * 2.399963; n.x = r * Math.cos(t); n.y = r * Math.sin(t); n.vx = n.vy = 0; });
+  }
+  view = {k: 1, x: W / 2, y: H / 2}; alpha = 1; kick();
+}
+const CELL = 260, VMAX = 30;
+function step() {
+  const vis = nodes.filter(n => n.vis && isFinite(n.x) && isFinite(n.y)), layered = $("#layout").value === "layered", n = vis.length;
+  const grid = new Map();
+  for (const a of vis) { const k = Math.floor(a.x / CELL) + "," + Math.floor(a.y / CELL); let c = grid.get(k); if (!c) grid.set(k, c = []); c.push(a); }
+  const rep = 2200 * (n > 800 ? .6 : 1);
+  for (const a of vis) {
+    const cx = Math.floor(a.x / CELL), cy = Math.floor(a.y / CELL);
+    for (let ox = -1; ox <= 1; ox++) for (let oy = -1; oy <= 1; oy++) {
+      const c = grid.get((cx + ox) + "," + (cy + oy)); if (!c) continue;
+      for (const b of c) { if (b === a) continue; let dx = a.x - b.x, dy = a.y - b.y, d2 = dx * dx + dy * dy; if (d2 < 1) { dx = Math.random() - .5; dy = Math.random() - .5; d2 = 1; } const d = Math.sqrt(d2), f = Math.min(25, rep / d2) * alpha; a.vx += dx / d * f; a.vy += dy / d * f; }
+    }
+  }
+  for (const e of edges) { if (!e.vis) continue; const a = e.a, b = e.b; let dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy) + 0.01, f = Math.max(-8, Math.min(8, (d - 90) * 0.02)) * alpha; dx /= d; dy /= d; a.vx += dx * f; a.vy += dy * f; b.vx -= dx * f; b.vy -= dy * f; }
+  const grav = n > 800 ? 0.02 : 0.006;
+  for (const a of vis) {
+    if (layered) a.vx += ((a.depth * 260 + (a.jx || 0)) - a.x) * 0.06 * alpha; else a.vx -= a.x * grav * alpha;
+    a.vy -= a.y * (layered ? 0.002 : grav) * alpha;
+    const sp = Math.hypot(a.vx, a.vy); if (sp > VMAX) { a.vx *= VMAX / sp; a.vy *= VMAX / sp; }
+    if (a !== drag) { a.x += a.vx; a.y += a.vy; } a.vx *= 0.55; a.vy *= 0.55;
+  }
+  alpha *= (n > 1500 ? 0.975 : 0.99);
+}
+let fc = 0, raf = 0; function kick() { if (!raf) raf = requestAnimationFrame(loop); }
+function loop() {
+  raf = 0; const t0 = performance.now(); let k = 0;
+  do { step(); k++; } while (k < 4 && performance.now() - t0 < 10);   // time-budgeted: stays responsive on 5k+ nodes
+  if (!fitted && ++fc % 25 === 0) fit();
+  draw(); if (alpha > 0.02 || drag) raf = requestAnimationFrame(loop); else if (!fitted) { fitted = true; fit(); }
+}
+let fitted = false, laidOut = false;
+const wx = x => (x - view.x) / view.k, wy = y => (y - view.y) / view.k;
+const palette = i => `hsl(${(i * 137.5) % 360},65%,55%)`;
+function colorOf(n) {
+  const m = $("#colorby").value;
+  if (m === "cluster") return n.cluster ? palette(n.cluster) : "#64748b";
+  if (m === "taint") { const t = n.taint; return `rgb(${Math.round(100 + 150 * t)},${Math.round(130 - 90 * t)},${Math.round(150 - 110 * t)})`; }
+  if (m === "depth") { const d = n.depth; return d === 0 ? "#fbbf24" : d > 0 ? `hsl(${200 - d * 18},70%,55%)` : `hsl(${280 + d * 12},60%,60%)`; }
+  return col(n.category);
+}
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+function draw() {
+  if (!W) return; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+  ctx.save(); ctx.translate(view.x, view.y); ctx.scale(view.k, view.k);
+  const minR = 2.2 / view.k, focus = sel ? new Set([sel, ...adj.get(sel)]) : null, line = css("--mute");
+  for (const e of edges) {
+    if (!e.vis) continue; const dim = focus && !(focus.has(e.s) && focus.has(e.t) && (e.s === sel || e.t === sel));
+    const w = 0.6 + 3.2 * Math.sqrt(e.value / maxVal); ctx.globalAlpha = dim ? 0.05 : (BIG && !focus ? 0.22 : 0.55); ctx.strokeStyle = (!dim && focus) ? css("--accent") : line; ctx.lineWidth = Math.max(w, 0.8 / view.k);
+    const dx = e.b.x - e.a.x, dy = e.b.y - e.a.y, d = Math.hypot(dx, dy) || 1, ux = dx / d, uy = dy / d, sx = e.a.x + ux * e.a.r, sy = e.a.y + uy * e.a.r, tx = e.b.x - ux * (e.b.r + 2), ty = e.b.y - uy * (e.b.r + 2);
+    ctx.beginPath(); ctx.moveTo(sx, sy); ctx.lineTo(tx, ty); ctx.stroke();
+    if (BIG && view.k < 1.2) continue;   // skip arrowheads on dense, zoomed-out graphs
+    const ah = 5 + w; ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(tx - ux * ah - uy * ah * .5, ty - uy * ah + ux * ah * .5); ctx.lineTo(tx - ux * ah + uy * ah * .5, ty - uy * ah - ux * ah * .5); ctx.closePath(); ctx.fillStyle = ctx.strokeStyle; ctx.fill();
+  }
+  const showL = $("#lbls").checked;
+  for (const n of nodes) {
+    if (!n.vis) continue; const dim = focus && !focus.has(n.id); ctx.globalAlpha = dim ? 0.15 : 1;
+    const r = Math.max(n.r, minR); ctx.beginPath(); ctx.arc(n.x, n.y, r, 0, 7); ctx.fillStyle = colorOf(n); ctx.fill();
+    if (n.taint > 0.05) { ctx.lineWidth = 1.5 + 3 * n.taint; ctx.strokeStyle = "#ef4444"; ctx.stroke(); }
+    if (n.seed) { ctx.beginPath(); ctx.arc(n.x, n.y, r + 4 / view.k * 0.6 + 2, 0, 7); ctx.lineWidth = 2; ctx.strokeStyle = "#fbbf24"; ctx.stroke(); }
+    if (n.id === sel || n.id === hover) { ctx.beginPath(); ctx.arc(n.x, n.y, r + 7, 0, 7); ctx.lineWidth = 2; ctx.strokeStyle = css("--accent"); ctx.stroke(); }
+    if (showL && (n.name || n.seed || view.k > 1.4 || n.id === sel || (focus && focus.has(n.id)))) { ctx.fillStyle = css("--text"); ctx.font = "11px system-ui"; ctx.fillText(n.name || n.short, n.x + r + 4, n.y + 4); }
+  }
+  ctx.restore(); ctx.globalAlpha = 1;
+}
+function pick(mx, my) { const x = wx(mx), y = wy(my); let best = null, bd = 1e9; for (const n of nodes) { if (!n.vis) continue; const d = Math.hypot(n.x - x, n.y - y); if (d <= n.r + 4 / view.k && d < bd) { best = n; bd = d; } } return best; }
+function pos(e) { const r = cv.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; }
+let pan = null;
+cv.addEventListener("mousedown", e => { const [mx, my] = pos(e), n = pick(mx, my); if (n) { drag = n; alpha = Math.max(alpha, .3); kick(); } else pan = {x: e.clientX - view.x, y: e.clientY - view.y, moved: false}; });
+window.addEventListener("mousemove", e => {
+  const [mx, my] = pos(e);
+  if (drag) { drag.x = wx(mx); drag.y = wy(my); drag.vx = drag.vy = 0; drag.moved = true; draw(); return; }
+  if (pan) { view.x = e.clientX - pan.x; view.y = e.clientY - pan.y; pan.moved = true; draw(); return; }
+  if (e.target !== cv) return; const n = pick(mx, my); if (n !== (hover && NI.get(hover))) { hover = n ? n.id : null; draw(); }
+  const tip = $("#tip"); if (n) { tip.style.display = "block"; tip.style.left = mx + 14 + "px"; tip.style.top = my + 14 + "px"; tip.innerHTML = `<b>${esc(n.name || n.short)}</b><br><span class="mono">${esc(n.short)}</span><br>${esc(CAT[n.category].title)} · hop ${n.depth}<br>in ${fmt(n.received)} / out ${fmt(n.sent)} ${sym}`; } else tip.style.display = "none";
+});
+window.addEventListener("mouseup", () => { if (drag && !drag.moved) selectNode(drag.id); drag = null; if (pan && !pan.moved) selectNode(null); pan = null; });
+cv.addEventListener("wheel", e => { e.preventDefault(); const [mx, my] = pos(e), z = Math.exp(-e.deltaY * 0.0012), nk = Math.min(6, Math.max(0.1, view.k * z)); view.x = mx - (mx - view.x) * nk / view.k; view.y = my - (my - view.y) * nk / view.k; view.k = nk; draw(); }, {passive: false});
+function fit() { const v = nodes.filter(n => n.vis); if (!v.length) return; const xs = v.map(n => n.x), ys = v.map(n => n.y), x0 = Math.min(...xs) - 60, x1 = Math.max(...xs) + 160, y0 = Math.min(...ys) - 40, y1 = Math.max(...ys) + 40; view.k = Math.max(0.03, Math.min(W / (x1 - x0), H / (y1 - y0), 2)); view.x = (W - (x1 - x0) * view.k) / 2 - x0 * view.k; view.y = (H - (y1 - y0) * view.k) / 2 - y0 * view.k; draw(); }
+function selectNode(id, center) {
+  sel = id; const s = $("#side");
+  if (!id) { s.style.display = "none"; draw(); return; }
+  const n = NI.get(id); if (center) { view.x = W / 2 - n.x * view.k - 120; view.y = H / 2 - n.y * view.k; }
+  const ins = edges.filter(e => e.t === id).sort((a, b) => b.value - a.value), outs = edges.filter(e => e.s === id).sort((a, b) => b.value - a.value);
+  const risk = D.risk[id];
+  s.style.display = "block";
+  s.innerHTML = `<span class="x" id="sx">✕</span><h3>${esc(n.name || "Address")}</h3><div class="mono" style="word-break:break-all">${esc(n.id)}</div>
+  <p><span class="dot" style="background:${col(n.category)}"></span>${esc(CAT[n.category].title)} · hop ${n.depth}${n.seed ? " · <b>seed</b>" : ""}${n.cluster ? " · cluster #" + n.cluster : ""}</p>
+  ${n.labels.map(l => `<div class="card" style="margin-bottom:6px"><b>${esc(l.name)}</b><br><span class="muted">${esc(l.category)} · ${(l.confidence * 100).toFixed(0)}% · ${esc(l.source)}</span>${l.notes ? "<br>" + esc(l.notes) : ""}</div>`).join("")}
+  ${risk ? `<p>Risk <b>${risk.score}/100</b> (${esc(risk.level)})</p>` : ""}
+  <table><tr><td>Received</td><td>${fmt(n.received)} ${sym}</td></tr><tr><td>Sent</td><td>${fmt(n.sent)} ${sym}</td></tr><tr><td>Transactions</td><td>${n.tx_count}</td></tr><tr><td>First seen</td><td>${esc(iso(n.first_seen))}</td></tr><tr><td>Last seen</td><td>${esc(iso(n.last_seen))}</td></tr><tr><td>Taint</td><td>${(n.taint * 100).toFixed(1)}%</td></tr><tr><td>Tags</td><td>${esc(n.tags.join(", "))}</td></tr></table>
+  <h3 style="margin-top:12px">Received from (${ins.length})</h3>${ins.slice(0, 15).map(e => `<div>${addrLink(e.s)} <span class="muted">${fmt(e.value)} ${sym}</span></div>`).join("") || "<span class=muted>—</span>"}
+  <h3 style="margin-top:12px">Sent to (${outs.length})</h3>${outs.slice(0, 15).map(e => `<div>${addrLink(e.t)} <span class="muted">${fmt(e.value)} ${sym}</span></div>`).join("") || "<span class=muted>—</span>"}`;
+  $("#sx").onclick = () => selectNode(null); draw();
+}
+function applyFilters() {
+  const minv = (() => { const p = +$("#minv").value; return p === 0 ? 0 : Math.exp(Math.log(1e-6) + (Math.log(maxVal) - Math.log(1e-6)) * p / 100); })();
+  $("#minvl").textContent = minv ? fmt(minv) : "0";
+  const mh = +$("#maxhop").value, hide = $("#hideun").checked;
+  nodes.forEach(n => n.vis = !catOff.has(n.category) && Math.abs(n.depth) <= mh && !(hide && n.category === "unlabeled" && !n.seed));
+  edges.forEach(e => e.vis = e.a.vis && e.b.vis && e.value >= minv); draw();
+}
+(function initUI() {
+  const cats = [...new Set(nodes.map(n => n.category))];
+  $("#chips").innerHTML = cats.map(c => `<span class="chip" data-c="${c}"><span class="dot" style="background:${col(c)};margin:0"></span>${esc(CAT[c].title)} (${nodes.filter(n => n.category === c).length})</span>`).join("");
+  $("#chips").onclick = e => { const c = e.target.closest(".chip"); if (!c) return; const k = c.dataset.c; catOff.has(k) ? catOff.delete(k) : catOff.add(k); c.classList.toggle("off"); applyFilters(); };
+  const md = Math.max(...nodes.map(n => Math.abs(n.depth)), 0); $("#maxhop").innerHTML = Array.from({length: md + 1}, (_, i) => `<option value="${md - i}">${md - i}</option>`).join("");
+  ["minv", "maxhop", "hideun", "lbls", "colorby"].forEach(i => $("#" + i).addEventListener("input", applyFilters));
+  $("#layout").onchange = () => { fitted = false; layoutInit(); };
+  $("#relayout").onclick = () => { fitted = false; layoutInit(); }; $("#fit").onclick = fit;
+  $("#png").onclick = () => cv.toBlob(b => { const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "tracex-graph.png"; a.click(); });
+  $("#search").addEventListener("keydown", e => { if (e.key !== "Enter") return; const q = e.target.value.toLowerCase().trim(); const n = nodes.find(n => n.id.toLowerCase().includes(q) || n.name.toLowerCase().includes(q)); if (n) selectNode(n.id, true); });
+})();
+
+// ---------------------------------------------------------------- flow (layered ribbons)
+function renderFlow() {
+  const K = 14, colW = 250, nodeW = 14, byD = {};
+  D.nodes.forEach(n => (byD[n.depth] = byD[n.depth] || []).push(n));
+  const depths = Object.keys(byD).map(Number).sort((a, b) => a - b), keep = new Set(), pos = {};
+  let maxH = 0; const NH = 30, gap = 10;
+  depths.forEach((d, ci) => { const arr = byD[d].sort((a, b) => (b.seed - a.seed) || ((b.received + b.sent) - (a.received + a.sent))).slice(0, K); arr.forEach((n, i) => { keep.add(n.id); pos[n.id] = {x: 20 + ci * colW, y: 30 + i * (NH + gap), n}; }); maxH = Math.max(maxH, 30 + arr.length * (NH + gap)); });
+  const links = D.edges.filter(e => keep.has(e.s) && keep.has(e.t) && N.get(e.t).depth > N.get(e.s).depth), mx = Math.max(...links.map(l => l.value), 1e-12);
+  let svg = `<svg width="${40 + depths.length * colW + 200}" height="${maxH + 30}">`;
+  depths.forEach((d, ci) => svg += `<text x="${20 + ci * colW}" y="16" style="font-weight:700">${d === 0 ? "Seed" : d > 0 ? "Hop +" + d : "Hop " + d}</text>`);
+  links.forEach(l => { const a = pos[l.s], b = pos[l.t], w = 1.5 + 14 * Math.sqrt(l.value / mx), x1 = a.x + nodeW, y1 = a.y + NH / 2, x2 = b.x, y2 = b.y + NH / 2, mx_ = (x1 + x2) / 2; svg += `<path d="M${x1} ${y1} C${mx_} ${y1} ${mx_} ${y2} ${x2} ${y2}" fill="none" stroke="${col(N.get(l.s).category)}" stroke-opacity=".45" stroke-width="${w.toFixed(1)}"><title>${esc(nm(l.s))} → ${esc(nm(l.t))}: ${fmt(l.value)} ${sym}</title></path>`; });
+  Object.values(pos).forEach(p => { svg += `<g style="cursor:pointer" onclick="go('graph');selectNode('${esc(p.n.id)}',true)"><rect x="${p.x}" y="${p.y}" width="${nodeW}" height="${NH}" rx="3" fill="${col(p.n.category)}"/><text x="${p.x + nodeW + 5}" y="${p.y + 13}">${esc(p.n.name || p.n.short)}</text><text x="${p.x + nodeW + 5}" y="${p.y + 26}" style="fill:var(--mute)">${p.n.received > 0 ? fmt(p.n.received) + " " + sym + " in" : fmt(p.n.sent) + " " + sym + " out"}</text></g>`; });
+  $("#flowsvg").innerHTML = svg + "</svg>";
+}
+
+// ---------------------------------------------------------------- timeline
+function renderTimeline() {
+  const T = D.transactions.filter(t => t.ts); if (!T.length) { $("#tlsvg").textContent = "No timestamps available."; return; }
+  const W_ = 1100, H_ = 380, m = {l: 60, r: 20, t: 20, b: 40}, t0 = Math.min(...T.map(t => t.ts)), t1 = Math.max(...T.map(t => t.ts)) || t0 + 1, vmax = Math.max(...T.map(t => t.total)), vmin = Math.min(...T.map(t => t.total).filter(v => v > 0), vmax);
+  const X = t => m.l + (W_ - m.l - m.r) * (t - t0) / Math.max(1, t1 - t0), Y = v => H_ - m.b - (H_ - m.t - m.b) * (Math.log(Math.max(v, vmin)) - Math.log(vmin)) / Math.max(1e-9, Math.log(vmax) - Math.log(vmin));
+  let s = `<svg width="${W_}" height="${H_}" class="axis"><line x1="${m.l}" y1="${H_ - m.b}" x2="${W_ - m.r}" y2="${H_ - m.b}"/><line x1="${m.l}" y1="${m.t}" x2="${m.l}" y2="${H_ - m.b}"/>`;
+  for (let i = 0; i <= 5; i++) { const t = t0 + (t1 - t0) * i / 5; s += `<text x="${X(t)}" y="${H_ - 14}" text-anchor="middle">${new Date(t * 1000).toISOString().slice(0, 10)}</text>`; const v = Math.exp(Math.log(vmin) + (Math.log(vmax) - Math.log(vmin)) * i / 5); s += `<text x="${m.l - 6}" y="${Y(v) + 4}" text-anchor="end">${fmt(v)}</text><line x1="${m.l}" y1="${Y(v)}" x2="${W_ - m.r}" y2="${Y(v)}" stroke-dasharray="2 4" opacity=".4"/>`; }
+  T.forEach(t => { const c = t.flags.includes("coinjoin") ? "#f59e0b" : t.flags.includes("peel") ? "#a78bfa" : "#4cc9f0"; s += `<circle cx="${X(t.ts)}" cy="${Y(t.total)}" r="${4 + Math.min(6, t.n_out / 2)}" fill="${c}" fill-opacity=".75"><title>${esc(iso(t.ts))}\n${fmt(t.total)} ${sym}\n${t.n_in}→${t.n_out} ${esc(t.flags.join(","))}\n${esc(t.txid)}</title></circle>`; });
+  s += `<g><circle cx="${m.l + 10}" cy="${m.t + 4}" r="5" fill="#4cc9f0"/><text x="${m.l + 20}" y="${m.t + 8}">tx</text><circle cx="${m.l + 60}" cy="${m.t + 4}" r="5" fill="#a78bfa"/><text x="${m.l + 70}" y="${m.t + 8}">peel chain</text><circle cx="${m.l + 150}" cy="${m.t + 4}" r="5" fill="#f59e0b"/><text x="${m.l + 160}" y="${m.t + 8}">coinjoin</text></g></svg>`;
+  $("#tlsvg").innerHTML = s;
+}
+
+// ---------------------------------------------------------------- findings / clusters / tables
+function renderFindings() {
+  $("#findings").innerHTML = "<h2>Findings</h2>" + (D.findings.map(f => `<div class="find ${f.severity}"><span class="pill sev-${f.severity}">${f.severity}</span> <b>${esc(f.title)}</b> <span class="muted">· ${esc(f.kind)}</span><div>${esc(f.detail)}</div>${f.addresses.length ? `<div style="margin-top:4px">${f.addresses.slice(0, 8).map(addrLink).join(" · ")}${f.addresses.length > 8 ? " …" : ""}</div>` : ""}${f.txids.length ? `<div class="mono muted" style="margin-top:4px">${f.txids.slice(0, 3).map(t => esc(t.slice(0, 20)) + "…").join("  ")}</div>` : ""}</div>`).join("") || "<p class=muted>No findings.</p>");
+}
+function renderClusters() {
+  $("#clusters").innerHTML = "<h2>Address clusters (common-input ownership)</h2>" + (D.clusters.map(c => `<div class="card" style="margin-bottom:10px"><h3>Cluster #${c.id} — ${c.members.length} addresses ${c.name ? `<span class="pill" style="color:${col(c.category)};border-color:${col(c.category)}">${esc(c.name)}</span>` : ""}</h3>${c.members.map(addrLink).join(" · ")}</div>`).join("") || "<p class=muted>No multi-address clusters.</p>");
+}
+function table(host, cols, rows, onrow) {
+  let sortK = null, dir = 1, q = "";
+  const el = $(host); el.innerHTML = `<h2>${el.dataset.title}</h2><input type="text" placeholder="filter…" size="30" style="margin-bottom:8px"><div class="tw"><table></table></div>`;
+  const inp = el.querySelector("input"), tb = el.querySelector("table");
+  function render() {
+    let r = rows.filter(x => !q || cols.some(c => String(c.v(x)).toLowerCase().includes(q)));
+    if (sortK != null) r = r.slice().sort((a, b) => { const x = cols[sortK].v(a), y = cols[sortK].v(b); return (x > y ? 1 : x < y ? -1 : 0) * dir; });
+    tb.innerHTML = `<thead><tr>${cols.map((c, i) => `<th data-i="${i}">${c.h}${sortK === i ? (dir > 0 ? " ▲" : " ▼") : ""}</th>`).join("")}</tr></thead><tbody>${r.slice(0, 1500).map((x, i) => `<tr class="click" data-i="${rows.indexOf(x)}">${cols.map(c => `<td>${c.f ? c.f(x) : esc(c.v(x))}</td>`).join("")}</tr>`).join("")}</tbody>`;
+  }
+  inp.oninput = () => { q = inp.value.toLowerCase(); render(); };
+  tb.onclick = e => { const th = e.target.closest("th"); if (th) { const i = +th.dataset.i; dir = sortK === i ? -dir : 1; sortK = i; render(); return; } const tr = e.target.closest("tr.click"); if (tr && onrow && !e.target.closest("a")) onrow(rows[+tr.dataset.i], tr); };
+  render();
+}
+function renderTables() {
+  $("#txs").dataset.title = "Transactions";
+  table("#txs", [{h: "Time", v: t => t.ts || 0, f: t => esc(iso(t.ts))}, {h: "Txid", v: t => t.txid, f: t => `<code>${esc(t.txid.slice(0, 20))}…</code>`}, {h: "In→Out", v: t => t.n_in * 1000 + t.n_out, f: t => t.n_in + "→" + t.n_out}, {h: "Total " + sym, v: t => t.total, f: t => fmt(t.total)}, {h: "Fee", v: t => t.fee, f: t => fmt(t.fee)}, {h: "Flags", v: t => t.flags.join(","), f: t => t.flags.map(f => `<span class="pill sev-medium">${esc(f)}</span>`).join(" ")}], D.transactions, (t, tr) => {
+    const nx = tr.nextElementSibling; if (nx && nx.classList.contains("detail")) { nx.remove(); return; }
+    const d = document.createElement("tr"); d.className = "detail"; d.innerHTML = `<td colspan="6" style="background:var(--panel2)"><div class="mono" style="word-break:break-all">${esc(t.txid)}</div><div class="grid two"><div><b>Inputs</b>${t.inputs.map(i => `<div>${addrLink(i.a)} <span class="muted">${fmt(i.v)}</span></div>`).join("")}</div><div><b>Outputs</b>${t.outputs.map(i => `<div>${addrLink(i.a)} <span class="muted">${fmt(i.v)}</span></div>`).join("")}</div></div></td>`; tr.after(d);
+  });
+  $("#addrs").dataset.title = "Addresses";
+  table("#addrs", [{h: "Entity", v: n => n.name || n.short, f: n => `<span class="dot" style="background:${col(n.category)}"></span>${addrLink(n.id)}`}, {h: "Address", v: n => n.id, f: n => `<code>${esc(n.id)}</code>`}, {h: "Category", v: n => n.category, f: n => esc(CAT[n.category].title)}, {h: "Hop", v: n => n.depth}, {h: "Recv " + sym, v: n => n.received, f: n => fmt(n.received)}, {h: "Sent " + sym, v: n => n.sent, f: n => fmt(n.sent)}, {h: "Txs", v: n => n.tx_count}, {h: "Taint", v: n => n.taint, f: n => (n.taint * 100).toFixed(0) + "%"}, {h: "Cluster", v: n => n.cluster || 0, f: n => n.cluster ? "#" + n.cluster : ""}], D.nodes, (n) => { go("graph"); selectNode(n.id, true); });
+}
+
+overview(); renderFindings(); renderClusters(); renderTables(); renderFlow(); renderTimeline();
+{ const h = location.hash.slice(1); go(TABS.some(t => t[0] === h) ? h : "overview"); }
+resize(); applyFilters();
+if (nodes.length > 1200) $("#bignote").textContent = "Large graph (" + nodes.length + " nodes): use Max hop / hide unlabeled / Min edge to focus · ";
+</script>
+</body>
+</html>

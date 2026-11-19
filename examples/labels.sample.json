@@ -1,0 +1,6 @@
+{
+  "labels": [
+    {"address": "bc1q_example_invalid_address_3", "name": "Example Market", "category": "darknet_market",
+     "source": "internal investigation #123", "confidence": 0.85, "notes": "free text, max 300 chars"}
+  ]
+}

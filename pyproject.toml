@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tracex"
+version = "1.0.0"
+description = "Blockchain forensics & AML investigation toolkit: trace Bitcoin/Ethereum fund flows, cluster addresses, detect laundering patterns, score risk, and export interactive reports."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+keywords = ["bitcoin", "ethereum", "blockchain", "forensics", "aml", "compliance", "graph", "osint"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Security",
+  "Intended Audience :: Information Technology",
+]
+dependencies = []   # core is standard-library only (on purpose: small supply-chain surface)
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "ruff>=0.4"]
+socks = ["PySocks>=1.7"]
+
+[project.scripts]
+tracex = "tracex.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+tracex = ["templates/*.html", "data/*.csv"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 140
+
+[tool.ruff.lint]
+select = ["E", "F", "W"]
+ignore = ["E701", "E702", "E731", "E741"]   # compact one-liners are used deliberately

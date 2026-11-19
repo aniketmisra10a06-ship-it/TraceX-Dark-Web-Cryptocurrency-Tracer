@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns">
+<key id="n_name" for="node" attr.name="name" attr.type="string"/>
+<key id="n_category" for="node" attr.name="category" attr.type="string"/>
+<key id="n_received" for="node" attr.name="received" attr.type="double"/>
+<key id="n_sent" for="node" attr.name="sent" attr.type="double"/>
+<key id="n_tx_count" for="node" attr.name="tx_count" attr.type="int"/>
+<key id="n_depth" for="node" attr.name="depth" attr.type="int"/>
+<key id="n_cluster" for="node" attr.name="cluster" attr.type="int"/>
+<key id="n_taint" for="node" attr.name="taint" attr.type="double"/>
+<key id="n_seed" for="node" attr.name="seed" attr.type="boolean"/>
+<key id="e_value" for="edge" attr.name="value" attr.type="double"/>
+<key id="e_count" for="edge" attr.name="tx_count" attr.type="int"/>
+<graph id="G" edgedefault="directed">
+<node id="bc1q_demo_ransom_1">
+<data key="n_name">DemoLocker ransom wallet #1</data>
+<data key="n_category">ransomware</data>
+<data key="n_received">2.5</data>
+<data key="n_sent">2.5</data>
+<data key="n_tx_count">4</data>
+<data key="n_depth">0</data>
+<data key="n_taint">1.0</data>
+<data key="n_cluster">1</data>
+<data key="n_seed">true</data></node>
+<node id="bc1q_demo_collect">
+<data key="n_name"></data>
+<data key="n_category">unlabeled</data>
+<data key="n_received">2.999</data>
+<data key="n_sent">2.999</data>
+<data key="n_tx_count">2</data>
+<data key="n_depth">1</data>
+<data key="n_taint">1.0</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_ransom_2">
+<data key="n_name">DemoLocker ransom wallet #2</data>
+<data key="n_category">ransomware</data>
+<data key="n_received">0.0</data>
+<data key="n_sent">0.5</data>
+<data key="n_tx_count">1</data>
+<data key="n_depth">0</data>
+<data key="n_taint">1.0</data>
+<data key="n_cluster">1</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_victim_1c">
+<data key="n_name"></data>
+<data key="n_category">unlabeled</data>
+<data key="n_received">0.4995</data>
+<data key="n_sent">0.0</data>
+<data key="n_tx_count">1</data>
+<data key="n_depth">-1</data>
+<data key="n_taint">0.0</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_victim_1">
+<data key="n_name">Victim A</data>
+<data key="n_category">victim</data>
+<data key="n_received">0.0</data>
+<data key="n_sent">1.0</data>
+<data key="n_tx_count">1</data>
+<data key="n_depth">-1</data>
+<data key="n_taint">0.0</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_victim_2c">
+<data key="n_name"></data>
+<data key="n_category">unlabeled</data>
+<data key="n_received">0.6995</data>
+<data key="n_sent">0.0</data>
+<data key="n_tx_count">1</data>
+<data key="n_depth">-1</data>
+<data key="n_taint">0.0</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_victim_2">
+<data key="n_name">Victim B</data>
+<data key="n_category">victim</data>
+<data key="n_received">0.0</data>
+<data key="n_sent">1.5</data>
+<data key="n_tx_count">1</data>
+<data key="n_depth">-1</data>
+<data key="n_taint">0.0</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_victim_3c">
+<data key="n_name"></data>
+<data key="n_category">unlabeled</data>
+<data key="n_received">0.7995</data>
+<data key="n_sent">0.0</data>
+<data key="n_tx_count">1</data>
+<data key="n_depth">-1</data>
+<data key="n_taint">0.0</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_victim_3">
+<data key="n_name">Victim C</data>
+<data key="n_category">victim</data>
+<data key="n_received">0.0</data>
+<data key="n_sent">2.0</data>
+<data key="n_tx_count">1</data>
+<data key="n_depth">-1</data>
+<data key="n_taint">0.0</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_chg_1">
+<data key="n_name"></data>
+<data key="n_category">unlabeled</data>
+<data key="n_received">2.7985</data>
+<data key="n_sent">2.7985</data>
+<data key="n_tx_count">2</data>
+<data key="n_depth">2</data>
+<data key="n_taint">1.0</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_peel_1">
+<data key="n_name"></data>
+<data key="n_category">unlabeled</data>
+<data key="n_received">0.2</data>
+<data key="n_sent">0.2</data>
+<data key="n_tx_count">2</data>
+<data key="n_depth">2</data>
+<data key="n_taint">1.0</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_exch_kyc">
+<data key="n_name">DemoExchange deposit</data>
+<data key="n_category">exchange_kyc</data>
+<data key="n_received">0.409</data>
+<data key="n_sent">0.0</data>
+<data key="n_tx_count">2</data>
+<data key="n_depth">3</data>
+<data key="n_taint">1.0</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_peel_2">
+<data key="n_name"></data>
+<data key="n_category">unlabeled</data>
+<data key="n_received">0.25</data>
+<data key="n_sent">0.25</data>
+<data key="n_tx_count">2</data>
+<data key="n_depth">3</data>
+<data key="n_taint">1.0</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_chg_2">
+<data key="n_name"></data>
+<data key="n_category">unlabeled</data>
+<data key="n_received">2.548</data>
+<data key="n_sent">2.548</data>
+<data key="n_tx_count">2</data>
+<data key="n_depth">3</data>
+<data key="n_taint">1.0</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_market_1">
+<data key="n_name">DemoMarket escrow</data>
+<data key="n_category">darknet_market</data>
+<data key="n_received">0.2495</data>
+<data key="n_sent">0.548</data>
+<data key="n_tx_count">2</data>
+<data key="n_depth">4</data>
+<data key="n_taint">1.0</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_chg_3">
+<data key="n_name"></data>
+<data key="n_category">unlabeled</data>
+<data key="n_received">2.2475</data>
+<data key="n_sent">2.2475</data>
+<data key="n_tx_count">2</data>
+<data key="n_depth">4</data>
+<data key="n_taint">1.0</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_peel_3">
+<data key="n_name"></data>
+<data key="n_category">unlabeled</data>
+<data key="n_received">0.3</data>
+<data key="n_sent">0.3</data>
+<data key="n_tx_count">2</data>
+<data key="n_depth">4</data>
+<data key="n_taint">1.0</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_market_hot">
+<data key="n_name">DemoMarket hot wallet</data>
+<data key="n_category">darknet_market</data>
+<data key="n_received">0.5475</data>
+<data key="n_sent">0.5475</data>
+<data key="n_tx_count">2</data>
+<data key="n_depth">5</data>
+<data key="n_taint">1.0</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_casino">
+<data key="n_name">DemoCasino</data>
+<data key="n_category">gambling</data>
+<data key="n_received">0.2995</data>
+<data key="n_sent">0.0</data>
+<data key="n_tx_count">1</data>
+<data key="n_depth">5</data>
+<data key="n_taint">1.0</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_peel_4">
+<data key="n_name"></data>
+<data key="n_category">unlabeled</data>
+<data key="n_received">0.21</data>
+<data key="n_sent">0.21</data>
+<data key="n_tx_count">2</data>
+<data key="n_depth">5</data>
+<data key="n_taint">1.0</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_chg_4">
+<data key="n_name"></data>
+<data key="n_category">unlabeled</data>
+<data key="n_received">2.037</data>
+<data key="n_sent">2.037</data>
+<data key="n_tx_count">2</data>
+<data key="n_depth">5</data>
+<data key="n_taint">1.0</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_sanctioned">
+<data key="n_name">Synthetic sanctioned entity</data>
+<data key="n_category">sanctioned</data>
+<data key="n_received">0.3</data>
+<data key="n_sent">0.0</data>
+<data key="n_tx_count">1</data>
+<data key="n_depth">6</data>
+<data key="n_taint">1.0</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_market_hot_c">
+<data key="n_name"></data>
+<data key="n_category">unlabeled</data>
+<data key="n_received">0.2465</data>
+<data key="n_sent">0.0</data>
+<data key="n_tx_count">1</data>
+<data key="n_depth">6</data>
+<data key="n_taint">1.0</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_cj_chg">
+<data key="n_name"></data>
+<data key="n_category">unlabeled</data>
+<data key="n_received">0.0365</data>
+<data key="n_sent">0.0</data>
+<data key="n_tx_count">1</data>
+<data key="n_depth">6</data>
+<data key="n_taint">0.202949</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_user_1">
+<data key="n_name"></data>
+<data key="n_category">unlabeled</data>
+<data key="n_received">0.0</data>
+<data key="n_sent">2.0</data>
+<data key="n_tx_count">1</data>
+<data key="n_depth">5</data>
+<data key="n_taint">0.0</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_cj_out_4">
+<data key="n_name"></data>
+<data key="n_category">unlabeled</data>
+<data key="n_received">2.0</data>
+<data key="n_sent">0.0</data>
+<data key="n_tx_count">1</data>
+<data key="n_depth">6</data>
+<data key="n_taint">0.202949</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_user_2">
+<data key="n_name"></data>
+<data key="n_category">unlabeled</data>
+<data key="n_received">0.0</data>
+<data key="n_sent">2.0</data>
+<data key="n_tx_count">1</data>
+<data key="n_depth">5</data>
+<data key="n_taint">0.0</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_cj_out_3">
+<data key="n_name"></data>
+<data key="n_category">unlabeled</data>
+<data key="n_received">2.0</data>
+<data key="n_sent">0.0</data>
+<data key="n_tx_count">1</data>
+<data key="n_depth">6</data>
+<data key="n_taint">0.202949</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_user_3">
+<data key="n_name"></data>
+<data key="n_category">unlabeled</data>
+<data key="n_received">0.0</data>
+<data key="n_sent">2.0</data>
+<data key="n_tx_count">1</data>
+<data key="n_depth">5</data>
+<data key="n_taint">0.0</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_cj_out_2">
+<data key="n_name"></data>
+<data key="n_category">unlabeled</data>
+<data key="n_received">2.0</data>
+<data key="n_sent">0.0</data>
+<data key="n_tx_count">1</data>
+<data key="n_depth">6</data>
+<data key="n_taint">0.202949</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_cj_out_1">
+<data key="n_name"></data>
+<data key="n_category">unlabeled</data>
+<data key="n_received">2.0</data>
+<data key="n_sent">2.0</data>
+<data key="n_tx_count">2</data>
+<data key="n_depth">6</data>
+<data key="n_taint">0.202949</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_user_4">
+<data key="n_name"></data>
+<data key="n_category">unlabeled</data>
+<data key="n_received">0.0</data>
+<data key="n_sent">2.0</data>
+<data key="n_tx_count">1</data>
+<data key="n_depth">5</data>
+<data key="n_taint">0.0</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_cj_out_5">
+<data key="n_name"></data>
+<data key="n_category">unlabeled</data>
+<data key="n_received">2.0</data>
+<data key="n_sent">0.0</data>
+<data key="n_tx_count">1</data>
+<data key="n_depth">6</data>
+<data key="n_taint">0.202949</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_hop_1">
+<data key="n_name"></data>
+<data key="n_category">unlabeled</data>
+<data key="n_received">1.9995</data>
+<data key="n_sent">1.9995</data>
+<data key="n_tx_count">2</data>
+<data key="n_depth">7</data>
+<data key="n_taint">0.202949</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<node id="bc1q_demo_exch_nokyc">
+<data key="n_name">ShadyEx (no-KYC)</data>
+<data key="n_category">exchange_nokyc</data>
+<data key="n_received">1.999</data>
+<data key="n_sent">0.0</data>
+<data key="n_tx_count">1</data>
+<data key="n_depth">8</data>
+<data key="n_taint">0.202949</data>
+<data key="n_cluster">0</data>
+<data key="n_seed">false</data></node>
+<edge id="e0" source="bc1q_demo_ransom_1" target="bc1q_demo_collect"><data key="e_value">2.4991666666666665</data><data key="e_count">1</data></edge>
+<edge id="e1" source="bc1q_demo_ransom_2" target="bc1q_demo_collect"><data key="e_value">0.49983333333333335</data><data key="e_count">1</data></edge>
+<edge id="e2" source="bc1q_demo_victim_1" target="bc1q_demo_ransom_1"><data key="e_value">0.5</data><data key="e_count">1</data></edge>
+<edge id="e3" source="bc1q_demo_victim_1" target="bc1q_demo_victim_1c"><data key="e_value">0.4995</data><data key="e_count">1</data></edge>
+<edge id="e4" source="bc1q_demo_victim_2" target="bc1q_demo_ransom_1"><data key="e_value">0.8</data><data key="e_count">1</data></edge>
+<edge id="e5" source="bc1q_demo_victim_2" target="bc1q_demo_victim_2c"><data key="e_value">0.6995</data><data key="e_count">1</data></edge>
+<edge id="e6" source="bc1q_demo_victim_3" target="bc1q_demo_ransom_1"><data key="e_value">1.2</data><data key="e_count">1</data></edge>
+<edge id="e7" source="bc1q_demo_victim_3" target="bc1q_demo_victim_3c"><data key="e_value">0.7995</data><data key="e_count">1</data></edge>
+<edge id="e8" source="bc1q_demo_collect" target="bc1q_demo_peel_1"><data key="e_value">0.2</data><data key="e_count">1</data></edge>
+<edge id="e9" source="bc1q_demo_collect" target="bc1q_demo_chg_1"><data key="e_value">2.7985</data><data key="e_count">1</data></edge>
+<edge id="e10" source="bc1q_demo_peel_1" target="bc1q_demo_exch_kyc"><data key="e_value">0.1995</data><data key="e_count">1</data></edge>
+<edge id="e11" source="bc1q_demo_chg_1" target="bc1q_demo_peel_2"><data key="e_value">0.25</data><data key="e_count">1</data></edge>
+<edge id="e12" source="bc1q_demo_chg_1" target="bc1q_demo_chg_2"><data key="e_value">2.548</data><data key="e_count">1</data></edge>
+<edge id="e13" source="bc1q_demo_peel_2" target="bc1q_demo_market_1"><data key="e_value">0.2495</data><data key="e_count">1</data></edge>
+<edge id="e14" source="bc1q_demo_chg_2" target="bc1q_demo_peel_3"><data key="e_value">0.3</data><data key="e_count">1</data></edge>
+<edge id="e15" source="bc1q_demo_chg_2" target="bc1q_demo_chg_3"><data key="e_value">2.2475</data><data key="e_count">1</data></edge>
+<edge id="e16" source="bc1q_demo_market_1" target="bc1q_demo_market_hot"><data key="e_value">0.5475</data><data key="e_count">1</data></edge>
+<edge id="e17" source="bc1q_demo_peel_3" target="bc1q_demo_casino"><data key="e_value">0.2995</data><data key="e_count">1</data></edge>
+<edge id="e18" source="bc1q_demo_chg_3" target="bc1q_demo_peel_4"><data key="e_value">0.21</data><data key="e_count">1</data></edge>
+<edge id="e19" source="bc1q_demo_chg_3" target="bc1q_demo_chg_4"><data key="e_value">2.037</data><data key="e_count">1</data></edge>
+<edge id="e20" source="bc1q_demo_market_hot" target="bc1q_demo_sanctioned"><data key="e_value">0.3</data><data key="e_count">1</data></edge>
+<edge id="e21" source="bc1q_demo_market_hot" target="bc1q_demo_market_hot_c"><data key="e_value">0.2465</data><data key="e_count">1</data></edge>
+<edge id="e22" source="bc1q_demo_peel_4" target="bc1q_demo_exch_kyc"><data key="e_value">0.2095</data><data key="e_count">1</data></edge>
+<edge id="e23" source="bc1q_demo_chg_4" target="bc1q_demo_cj_out_1"><data key="e_value">0.4058981767460397</data><data key="e_count">1</data></edge>
+<edge id="e24" source="bc1q_demo_chg_4" target="bc1q_demo_cj_out_2"><data key="e_value">0.4058981767460397</data><data key="e_count">1</data></edge>
+<edge id="e25" source="bc1q_demo_chg_4" target="bc1q_demo_cj_out_3"><data key="e_value">0.4058981767460397</data><data key="e_count">1</data></edge>
+<edge id="e26" source="bc1q_demo_chg_4" target="bc1q_demo_cj_out_4"><data key="e_value">0.4058981767460397</data><data key="e_count">1</data></edge>
+<edge id="e27" source="bc1q_demo_chg_4" target="bc1q_demo_cj_out_5"><data key="e_value">0.4058981767460397</data><data key="e_count">1</data></edge>
+<edge id="e28" source="bc1q_demo_chg_4" target="bc1q_demo_cj_chg"><data key="e_value">0.007407641725615224</data><data key="e_count">1</data></edge>
+<edge id="e29" source="bc1q_demo_user_1" target="bc1q_demo_cj_out_1"><data key="e_value">0.3985254558134901</data><data key="e_count">1</data></edge>
+<edge id="e30" source="bc1q_demo_user_1" target="bc1q_demo_cj_out_2"><data key="e_value">0.3985254558134901</data><data key="e_count">1</data></edge>
+<edge id="e31" source="bc1q_demo_user_1" target="bc1q_demo_cj_out_3"><data key="e_value">0.3985254558134901</data><data key="e_count">1</data></edge>
+<edge id="e32" source="bc1q_demo_user_1" target="bc1q_demo_cj_out_4"><data key="e_value">0.3985254558134901</data><data key="e_count">1</data></edge>
+<edge id="e33" source="bc1q_demo_user_1" target="bc1q_demo_cj_out_5"><data key="e_value">0.3985254558134901</data><data key="e_count">1</data></edge>
+<edge id="e34" source="bc1q_demo_user_1" target="bc1q_demo_cj_chg"><data key="e_value">0.0072730895685961935</data><data key="e_count">1</data></edge>
+<edge id="e35" source="bc1q_demo_user_2" target="bc1q_demo_cj_out_1"><data key="e_value">0.3985254558134901</data><data key="e_count">1</data></edge>
+<edge id="e36" source="bc1q_demo_user_2" target="bc1q_demo_cj_out_2"><data key="e_value">0.3985254558134901</data><data key="e_count">1</data></edge>
+<edge id="e37" source="bc1q_demo_user_2" target="bc1q_demo_cj_out_3"><data key="e_value">0.3985254558134901</data><data key="e_count">1</data></edge>
+<edge id="e38" source="bc1q_demo_user_2" target="bc1q_demo_cj_out_4"><data key="e_value">0.3985254558134901</data><data key="e_count">1</data></edge>
+<edge id="e39" source="bc1q_demo_user_2" target="bc1q_demo_cj_out_5"><data key="e_value">0.3985254558134901</data><data key="e_count">1</data></edge>
+<edge id="e40" source="bc1q_demo_user_2" target="bc1q_demo_cj_chg"><data key="e_value">0.0072730895685961935</data><data key="e_count">1</data></edge>
+<edge id="e41" source="bc1q_demo_user_3" target="bc1q_demo_cj_out_1"><data key="e_value">0.3985254558134901</data><data key="e_count">1</data></edge>
+<edge id="e42" source="bc1q_demo_user_3" target="bc1q_demo_cj_out_2"><data key="e_value">0.3985254558134901</data><data key="e_count">1</data></edge>
+<edge id="e43" source="bc1q_demo_user_3" target="bc1q_demo_cj_out_3"><data key="e_value">0.3985254558134901</data><data key="e_count">1</data></edge>
+<edge id="e44" source="bc1q_demo_user_3" target="bc1q_demo_cj_out_4"><data key="e_value">0.3985254558134901</data><data key="e_count">1</data></edge>
+<edge id="e45" source="bc1q_demo_user_3" target="bc1q_demo_cj_out_5"><data key="e_value">0.3985254558134901</data><data key="e_count">1</data></edge>
+<edge id="e46" source="bc1q_demo_user_3" target="bc1q_demo_cj_chg"><data key="e_value">0.0072730895685961935</data><data key="e_count">1</data></edge>
+<edge id="e47" source="bc1q_demo_user_4" target="bc1q_demo_cj_out_1"><data key="e_value">0.3985254558134901</data><data key="e_count">1</data></edge>
+<edge id="e48" source="bc1q_demo_user_4" target="bc1q_demo_cj_out_2"><data key="e_value">0.3985254558134901</data><data key="e_count">1</data></edge>
+<edge id="e49" source="bc1q_demo_user_4" target="bc1q_demo_cj_out_3"><data key="e_value">0.3985254558134901</data><data key="e_count">1</data></edge>
+<edge id="e50" source="bc1q_demo_user_4" target="bc1q_demo_cj_out_4"><data key="e_value">0.3985254558134901</data><data key="e_count">1</data></edge>
+<edge id="e51" source="bc1q_demo_user_4" target="bc1q_demo_cj_out_5"><data key="e_value">0.3985254558134901</data><data key="e_count">1</data></edge>
+<edge id="e52" source="bc1q_demo_user_4" target="bc1q_demo_cj_chg"><data key="e_value">0.0072730895685961935</data><data key="e_count">1</data></edge>
+<edge id="e53" source="bc1q_demo_cj_out_1" target="bc1q_demo_hop_1"><data key="e_value">1.9995</data><data key="e_count">1</data></edge>
+<edge id="e54" source="bc1q_demo_hop_1" target="bc1q_demo_exch_nokyc"><data key="e_value">1.999</data><data key="e_count">1</data></edge>
+</graph>
+</graphml>

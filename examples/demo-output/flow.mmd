@@ -1,0 +1,104 @@
+flowchart LR
+  n0(("DemoLocker ransom wallet  1<br/>2.5 BTC in<br/>taint 100%")):::ransomware
+  n1["Victim C<br/>0 BTC in"]:::victim
+  n2["ShadyEx  no-KYC<br/>1.999 BTC in<br/>taint 20%"]:::exchange_nokyc
+  n3["Victim B<br/>0 BTC in"]:::victim
+  n4["DemoMarket hot wallet<br/>0.5475 BTC in<br/>taint 100%"]:::darknet_market
+  n5["Victim A<br/>0 BTC in"]:::victim
+  n6["DemoMarket escrow<br/>0.2495 BTC in<br/>taint 100%"]:::darknet_market
+  n7["DemoLocker ransom wallet  2<br/>0 BTC in<br/>taint 100%"]:::ransomware
+  n8["DemoExchange deposit<br/>0.409 BTC in<br/>taint 100%"]:::exchange_kyc
+  n9["Synthetic sanctioned entity<br/>0.3 BTC in<br/>taint 100%"]:::sanctioned
+  n10["DemoCasino<br/>0.2995 BTC in<br/>taint 100%"]:::gambling
+  n11["bc1q_demo_collect<br/>2.999 BTC in<br/>taint 100%"]:::unlabeled
+  n12["bc1q_demo_chg_1<br/>2.799 BTC in<br/>taint 100%"]:::unlabeled
+  n13["bc1q_demo_chg_2<br/>2.548 BTC in<br/>taint 100%"]:::unlabeled
+  n14["bc1q_demo_chg_3<br/>2.248 BTC in<br/>taint 100%"]:::unlabeled
+  n15["bc1q_demo_chg_4<br/>2.037 BTC in<br/>taint 100%"]:::unlabeled
+  n16["bc1q_demo_cj_out_1<br/>2 BTC in<br/>taint 20%"]:::unlabeled
+  n17["bc1q_demo_hop_1<br/>2 BTC in<br/>taint 20%"]:::unlabeled
+  n18["bc1q_demo_user_1<br/>0 BTC in"]:::unlabeled
+  n19["bc1q_demo_cj_out_4<br/>2 BTC in<br/>taint 20%"]:::unlabeled
+  n20["bc1q_demo_user_2<br/>0 BTC in"]:::unlabeled
+  n21["bc1q_demo_cj_out_3<br/>2 BTC in<br/>taint 20%"]:::unlabeled
+  n22["bc1q_demo_user_3<br/>0 BTC in"]:::unlabeled
+  n23["bc1q_demo_cj_out_2<br/>2 BTC in<br/>taint 20%"]:::unlabeled
+  n24["bc1q_demo_user_4<br/>0 BTC in"]:::unlabeled
+  n25["bc1q_demo_cj_out_5<br/>2 BTC in<br/>taint 20%"]:::unlabeled
+  n26["bc1q_demo_victim_3c<br/>0.7995 BTC in"]:::unlabeled
+  n27["bc1q_demo_victim_2c<br/>0.6995 BTC in"]:::unlabeled
+  n28["bc1q_demo_peel_3<br/>0.3 BTC in<br/>taint 100%"]:::unlabeled
+  n29["bc1q_demo_peel_2<br/>0.25 BTC in<br/>taint 100%"]:::unlabeled
+  n30["bc1q_demo_victim_1c<br/>0.4995 BTC in"]:::unlabeled
+  n31["bc1q_demo_peel_4<br/>0.21 BTC in<br/>taint 100%"]:::unlabeled
+  n32["bc1q_demo_peel_1<br/>0.2 BTC in<br/>taint 100%"]:::unlabeled
+  n33["bc1q_dem…_hot_c<br/>0.2465 BTC in<br/>taint 100%"]:::unlabeled
+  n34["bc1q_demo_cj_chg<br/>0.0365 BTC in<br/>taint 20%"]:::unlabeled
+  n0 -->|2.499 BTC| n11
+  n7 -->|0.4998 BTC| n11
+  n5 -->|0.5 BTC| n0
+  n5 -->|0.4995 BTC| n30
+  n3 -->|0.8 BTC| n0
+  n3 -->|0.6995 BTC| n27
+  n1 -->|1.2 BTC| n0
+  n1 -->|0.7995 BTC| n26
+  n11 -->|0.2 BTC| n32
+  n11 -->|2.799 BTC| n12
+  n32 -->|0.1995 BTC| n8
+  n12 -->|0.25 BTC| n29
+  n12 -->|2.548 BTC| n13
+  n29 -->|0.2495 BTC| n6
+  n13 -->|0.3 BTC| n28
+  n13 -->|2.248 BTC| n14
+  n6 -->|0.5475 BTC| n4
+  n28 -->|0.2995 BTC| n10
+  n14 -->|0.21 BTC| n31
+  n14 -->|2.037 BTC| n15
+  n4 -->|0.3 BTC| n9
+  n4 -->|0.2465 BTC| n33
+  n31 -->|0.2095 BTC| n8
+  n15 -->|0.4059 BTC| n16
+  n15 -->|0.4059 BTC| n23
+  n15 -->|0.4059 BTC| n21
+  n15 -->|0.4059 BTC| n19
+  n15 -->|0.4059 BTC| n25
+  n15 -->|0.007408 BTC| n34
+  n18 -->|0.3985 BTC| n16
+  n18 -->|0.3985 BTC| n23
+  n18 -->|0.3985 BTC| n21
+  n18 -->|0.3985 BTC| n19
+  n18 -->|0.3985 BTC| n25
+  n18 -->|0.007273 BTC| n34
+  n20 -->|0.3985 BTC| n16
+  n20 -->|0.3985 BTC| n23
+  n20 -->|0.3985 BTC| n21
+  n20 -->|0.3985 BTC| n19
+  n20 -->|0.3985 BTC| n25
+  n20 -->|0.007273 BTC| n34
+  n22 -->|0.3985 BTC| n16
+  n22 -->|0.3985 BTC| n23
+  n22 -->|0.3985 BTC| n21
+  n22 -->|0.3985 BTC| n19
+  n22 -->|0.3985 BTC| n25
+  n22 -->|0.007273 BTC| n34
+  n24 -->|0.3985 BTC| n16
+  n24 -->|0.3985 BTC| n23
+  n24 -->|0.3985 BTC| n21
+  n24 -->|0.3985 BTC| n19
+  n24 -->|0.3985 BTC| n25
+  n24 -->|0.007273 BTC| n34
+  n16 -->|2 BTC| n17
+  n17 -->|1.999 BTC| n2
+  classDef sanctioned fill:#b91c1c33,stroke:#b91c1c,stroke-width:2px,color:#111;
+  classDef ransomware fill:#dc262633,stroke:#dc2626,stroke-width:2px,color:#111;
+  classDef theft fill:#ea580c33,stroke:#ea580c,stroke-width:2px,color:#111;
+  classDef darknet_market fill:#9333ea33,stroke:#9333ea,stroke-width:2px,color:#111;
+  classDef scam fill:#c026d333,stroke:#c026d3,stroke-width:2px,color:#111;
+  classDef mixer fill:#f59e0b33,stroke:#f59e0b,stroke-width:2px,color:#111;
+  classDef exchange_nokyc fill:#ca8a0433,stroke:#ca8a04,stroke-width:2px,color:#111;
+  classDef gambling fill:#0284c733,stroke:#0284c7,stroke-width:2px,color:#111;
+  classDef defi fill:#0d948833,stroke:#0d9488,stroke-width:2px,color:#111;
+  classDef exchange_kyc fill:#16a34a33,stroke:#16a34a,stroke-width:2px,color:#111;
+  classDef service fill:#64748b33,stroke:#64748b,stroke-width:2px,color:#111;
+  classDef victim fill:#2563eb33,stroke:#2563eb,stroke-width:2px,color:#111;
+  classDef unlabeled fill:#94a3b833,stroke:#94a3b8,stroke-width:2px,color:#111;
